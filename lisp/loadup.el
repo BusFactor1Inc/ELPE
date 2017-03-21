@@ -53,6 +53,7 @@
 ;; successfully loading charprop.el, which defines the Unicode tables
 ;; bidi.c needs for its job.
 (setq redisplay--inhibit-bidi t)
+(setq inhibit-splash-screen t)
 
 ;; Add subdirectories to the load-path for files that might get
 ;; autoloaded when bootstrapping.
