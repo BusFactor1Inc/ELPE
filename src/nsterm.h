@@ -616,6 +616,7 @@ char const * nstrace_fullscreen_type_name (int);
 
    ========================================================================== */
 
+/*
 @interface EmacsSavePanel : NSSavePanel
 {
 }
@@ -624,6 +625,7 @@ char const * nstrace_fullscreen_type_name (int);
 {
 }
 @end
+*/
 
 @interface EmacsFileDelegate : NSObject
 {

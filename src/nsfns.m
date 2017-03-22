@@ -1502,7 +1502,7 @@ Optional arg DIR_ONLY_P, if non-nil, means choose only directories.  */)
     dirS = [dirS stringByExpandingTildeInPath];
 
   panel = isSave ?
-    (id)[EmacsSavePanel savePanel] : (id)[EmacsOpenPanel openPanel];
+    (id)[NSSavePanel savePanel] : (id)[NSOpenPanel openPanel];
 
   [panel setTitle: promptS];
 
@@ -2943,7 +2943,7 @@ menu bar or tool bar of FRAME.  */)
 
 /*
   Handle arrow/function/control keys and copy/paste/cut in file dialogs.
-  Return YES if handled, NO if not.
+ Return YES if handled, NO if not.
  */
 static BOOL
 handlePanelKeys (NSSavePanel *panel, NSEvent *theEvent)
@@ -3017,6 +3017,7 @@ handlePanelKeys (NSSavePanel *panel, NSEvent *theEvent)
   return ret;
 }
 
+/*
 @implementation EmacsSavePanel
 - (BOOL)performKeyEquivalent:(NSEvent *)theEvent
 {
@@ -3038,7 +3039,7 @@ handlePanelKeys (NSSavePanel *panel, NSEvent *theEvent)
   return ret;
 }
 @end
-
+*/
 
 @implementation EmacsFileDelegate
 /* --------------------------------------------------------------------------
