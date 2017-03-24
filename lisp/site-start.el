@@ -69,4 +69,3 @@
     (set-frame-position frame-3 frame-3-x frame-3-y)))
 
 (run-at-time "1 sec" nil 'layout-windows-centered-on-screen)
-

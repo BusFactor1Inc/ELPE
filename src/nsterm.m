@@ -258,7 +258,7 @@ float ns_antialias_threshold;
 
 NSArray *ns_send_types = 0, *ns_return_types = 0;
 static NSArray *ns_drag_types = 0;
-NSString *ns_app_name = @"Emacs";  /* default changed later */
+NSString *ns_app_name = @"Emacs Lisp Programming Environment (ELPE)";  /* default changed later */
 
 /* Display variables */
 struct ns_display_info *x_display_list; /* Chain of existing displays */
@@ -4864,7 +4864,8 @@ ns_term_init (Lisp_Object display_name)
 
   delete_keyboard_wait_descriptor (0);
 
-  ns_app_name = [[NSProcessInfo processInfo] processName];
+  //ns_app_name = [[NSProcessInfo processInfo] processName];
+  ns_app_name = @"Emacs Lisp Programming Environment (ELPE)";
 
   /* Set up macOS app menu */
 
@@ -4877,12 +4878,12 @@ ns_term_init (Lisp_Object display_name)
     /* set up the application menu */
     svcsMenu = [[EmacsMenu alloc] initWithTitle: @"Services"];
     [svcsMenu setAutoenablesItems: NO];
-    appMenu = [[EmacsMenu alloc] initWithTitle: @"Emacs"];
+    appMenu = [[EmacsMenu alloc] initWithTitle: @"Emacs Lisp Programming Environment (ELPE)"];
     [appMenu setAutoenablesItems: NO];
     mainMenu = [[EmacsMenu alloc] initWithTitle: @""];
     dockMenu = [[EmacsMenu alloc] initWithTitle: @""];
 
-    [appMenu insertItemWithTitle: @"About Emacs"
+    [appMenu insertItemWithTitle: @"About Emacs Lisp Programming Environment (ELPE)"
                           action: @selector (orderFrontStandardAboutPanel:)
                    keyEquivalent: @""
                          atIndex: 0];
@@ -4898,7 +4899,7 @@ ns_term_init (Lisp_Object display_name)
                                 atIndex: 4];
     [appMenu setSubmenu: svcsMenu forItem: item];
     [appMenu insertItem: [NSMenuItem separatorItem] atIndex: 5];
-    [appMenu insertItemWithTitle: @"Hide Emacs"
+    [appMenu insertItemWithTitle: @"Hide Emacs Lisp Programming Environment (ELPE)"
                           action: @selector (hide:)
                    keyEquivalent: @"h"
                          atIndex: 6];
@@ -4908,7 +4909,7 @@ ns_term_init (Lisp_Object display_name)
                          atIndex: 7];
     [item setKeyEquivalentModifierMask: NSEventModifierFlagCommand | NSEventModifierFlagOption];
     [appMenu insertItem: [NSMenuItem separatorItem] atIndex: 8];
-    [appMenu insertItemWithTitle: @"Quit Emacs"
+    [appMenu insertItemWithTitle: @"Quit Emacs Lisp Programming Environment (LEPE)"
                           action: @selector (terminate:)
                    keyEquivalent: @"q"
                          atIndex: 9];
@@ -6762,12 +6763,12 @@ not_in_argv (NSString *arg)
 
   tem = f->name;
   name = [NSString stringWithUTF8String:
-                   NILP (tem) ? "Emacs" : SSDATA (tem)];
+                   NILP (tem) ? "Emacs Lisp Programmin Environment (ELPE)" : SSDATA (tem)];
   [win setTitle: name];
 
   /* toolbar support */
   toolbar = [[EmacsToolbar alloc] initForView: self withIdentifier:
-                         [NSString stringWithFormat: @"Emacs Frame %d",
+                         [NSString stringWithFormat: @"Emacs Lisp Programming Environment (ELPE) Frame %d",
                                    ns_window_num]];
   [win setToolbar: toolbar];
   [toolbar setVisible: NO];
