@@ -2,7 +2,7 @@ build_number=${1?enter a build number}
 appname="Emacs Lisp Programming Environment (ELPE).app"
 
 rm -rf nextstep/"${appname}"
-make install
+make -j17 install
 
 cp -a nextstep/Emacs.app/ nextstep/"${appname}"/
 
