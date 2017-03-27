@@ -15,9 +15,6 @@
 (other-window 1)
 (split-window-vertically)
 
-(setq rcirc-server-alist '(("irc.freenode.net" :channels ("#elpe"))))
-;(irc nil)
-
 (switch-to-buffer "*info*")
 (set-frame-size (selected-frame) 80 37)
 
@@ -26,11 +23,15 @@
 (defun screen-dimensions-macos ()
   (car (read-from-string (shell-command-to-string "system_profiler SPDisplaysDataType | grep Resolution | while read a width x height xs; do echo '(' $width '.'  $height ')'; done"))))
 
-;(setq rcirc-default-nic "burton-1`")
-(irc nil)
-(rcirc-join-channels (get-process "irc.freenode.net") (list "#ELPE"))
-(switch-to-buffer "#ELPE@irc.freenode.net")
-(rename-buffer "*Help Chat*")
+;;(setq rcirc-server-alist '(("irc.freenode.net" :channels ("#elpe"))))
+;;(irc nil)
+;;(setq rcirc-default-nic "burton-1`")
+;;(irc nil)
+;;(rcirc-join-channels (get-process "irc.freenode.net") (list "#ELPE"))
+;;(switch-to-buffer "#ELPE@irc.freenode.net")
+;;(rename-buffer "*Help Chat*")
+(other-window 1)
+(delete-other-windows)
 
 (new-frame)
 
