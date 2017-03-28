@@ -644,7 +644,7 @@ nil, by matching `change-log-version-number-regexp-list'."
 	 (limit
 	  ;; The version number can be anywhere in the file, but
 	  ;; restrict search to the file beginning: 10% should be
-	  ;; enough to prevent some mishits.
+	  ;; enough to prevent some misfits.
 	  ;;
 	  ;; Apply percentage only if buffer size is bigger than
 	  ;; approx 100 lines.

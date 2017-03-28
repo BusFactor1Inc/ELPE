@@ -58,7 +58,7 @@
 ;;   is that for reasonably complex back ends like this one, nnoo is a burden
 ;;   rather than an help. It's tricky to use, not everything can be inherited,
 ;;   what can be inherited and when is not very clear, and you've got to be
-;;   very careful because a little mistake can fuck up your other back ends,
+;;   very careful because a little mistake can mess up your other back ends,
 ;;   especially because their variables will be use instead of your real ones.
 ;;   Finally, I found it easier to just clone the needed parts of nnml, and
 ;;   tracking nnml updates is not a big deal.
