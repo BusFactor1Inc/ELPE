@@ -1,3 +1,9 @@
+GIT CLONE THIS RESPOSITORY WITH --RECURSIVE:
+
+    git clone --recursive https://github.com/BusFactor1Inc/ELPE
+    
+==
+
 Emacs Lisp Programming Environment
 ==
 
