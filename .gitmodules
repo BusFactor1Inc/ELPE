@@ -1,0 +1,3 @@
+[submodule "lisp/paredit"]
+	path = lisp/paredit
+	url = http://mumble.net/~campbell/git/paredit.git/

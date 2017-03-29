@@ -1,3 +1,8 @@
+(require 'cl) ;; We're just like that
+
+;; Turn on pareditmode by default
+(add-hook 'emacs-lisp-mode-hook 'enable-paredit-mode)
+
 (global-set-key "\M-;" 'other-window)
 (global-set-key "\M-'" 'lisp-complete-symbol)
 
@@ -69,4 +74,47 @@
     (set-frame-position frame-2 frame-2-x frame-2-y)
     (set-frame-position frame-3 frame-3-x frame-3-y)))
 
-(run-at-time "1 sec" nil 'layout-windows-centered-on-screen)
+;; Run a given function-symbol (zero argument function) at a later time
+(defmacro* later (function-symbol &optional (time "1 sec"))
+  `(run-at-time ,time nil ',function-symbol))
+
+;;(run-at-time "1 sec" nil 'layout-windows-centered-on-screen)
+(later layout-windows-centered-on-screen)
+
+;; smooth scrolling
+(setq mouse-wheel-scroll-amount '(1 ((shift) . 1))) ;; one line at a time
+(setq mouse-wheel-progressive-speed nil) ;; don't accelerate scrolling
+(setq mouse-wheel-follow-mouse 't) ;; scroll window under mouse
+(setq scroll-step 1)
+
+;; Override M-x shell to use eshell
+(defun shell ()
+  (interactive)
+  (switch-to-buffer "*eshell*"))
+
+;; Add paredit mode to eshell
+(add-hook 'eshell-mode-hook 'enable-paredit-mode)
+
+;; Enable show-paren-mode
+(show-paren-mode 1)
+
+;; Bind M-, to toggle-paredit-mode
+(let ((toggle 1))
+  (defun toggle-paredit-mode ()
+  (interactive)
+  (message "Paredit Mode Toggled")
+  (paredit-mode (setf toggle (if toggle 0 1)))))
+
+(defun* keybind-toggle-paredit-mode (&optional (keyspec "\M-,"))
+  (global-set-key keyspec 'toggle-paredit-mode))
+
+(later keybind-toggle-paredit-mode)
+
+(defun site-start ()
+  (interactive)
+  (other-window 2)
+  (find-file "~/emacs/lisp/site-start.el")
+  (end-of-buffer))
+
+; (later site-start) ;; Uncomment to get out of beginner mode.
+
