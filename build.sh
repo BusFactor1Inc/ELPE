@@ -14,9 +14,12 @@ cp -a nextstep/Emacs.app/ nextstep/"${appname}"/
 
 cp "ELPE.icns" "nextstep/${appname}/Contents/Resources/Emacs.icns"
 
-cp nextstep/Cocoa/Emacs.base/Contents/Info.plist nextstep/"${appname}"/Contents/Info.plist
+cp Info.plist nextstep/"${appname}"/Contents/Info.plist
+gsed -i "s|ELPE_IDENTIFIER|ca.busfactor1.emacs|" nextstep/"${appname}"/Contents/Info.plist
 gsed -i "s|ELPE_VERSION|$version|" nextstep/"${appname}"/Contents/Info.plist
 gsed -i "s|BUILD_NUMBER|$build_number|" nextstep/"${appname}"/Contents/Info.plist
+
+rm -f nextstep/"${appname}"/Contents/Resources/English.lproj/InfoPlist.strings
 
 xattr -cr nextstep/"${appname}"
 

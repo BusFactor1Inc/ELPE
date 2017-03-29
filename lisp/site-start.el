@@ -1,7 +1,11 @@
+(setq lexical-binding t)
 (require 'cl) ;; We're just like that
 
 ;; Turn on pareditmode by default
 (add-hook 'emacs-lisp-mode-hook 'enable-paredit-mode)
+
+;; Add paredit mode to eshell
+(add-hook 'eshell-mode-hook 'enable-paredit-mode)
 
 (global-set-key "\M-;" 'other-window)
 (global-set-key "\M-'" 'lisp-complete-symbol)
@@ -64,6 +68,10 @@
 	 (frame-3-x (/ (- width frame-1-w frame-3-w) 2))
 	 (frame-3-y (/ (- height frame-3-h) 2))
 
+         ;; Better placement on small monitors.
+         (when (< frame-3-x 0) (setf frame-3-x 0))
+         (when (< frame-3-y 0) (setf frame-3-y 0))
+
 	 (frame-2-x (+ frame-3-x frame-3-w padding))
 	 (frame-2-y frame-3-y)
 
@@ -92,18 +100,15 @@
   (interactive)
   (switch-to-buffer "*eshell*"))
 
-;; Add paredit mode to eshell
-(add-hook 'eshell-mode-hook 'enable-paredit-mode)
-
 ;; Enable show-paren-mode
 (show-paren-mode 1)
 
 ;; Bind M-, to toggle-paredit-mode
-(let ((toggle 1))
-  (defun toggle-paredit-mode ()
+(setq *paredit-state* 1)
+(defun toggle-paredit-mode ()
   (interactive)
   (message "Paredit Mode Toggled")
-  (paredit-mode (setf toggle (if toggle 0 1)))))
+  (paredit-mode (setf *paredit-state* (if (=  *paredit-state* 0) 1 0))))
 
 (defun* keybind-toggle-paredit-mode (&optional (keyspec "\M-,"))
   (global-set-key keyspec 'toggle-paredit-mode))
@@ -112,8 +117,8 @@
 
 (defun site-start ()
   (interactive)
-  (other-window 2)
-  (find-file "~/emacs/lisp/site-start.el")
+  (other-window 1)
+  (find-file "~/ELPE/lisp/site-start.el")
   (end-of-buffer))
 
 ; (later site-start) ;; Uncomment to get out of beginner mode.
