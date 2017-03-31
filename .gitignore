@@ -288,3 +288,4 @@ nt/emacsclient.rc
 nt/gnulib.mk
 src/gdb.ini
 /var/
+.DS_Store
