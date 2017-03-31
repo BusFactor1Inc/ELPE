@@ -47,8 +47,7 @@
 
 (new-frame)
 
-;; center windows on screen
-(defun layout-windows-centered-on-screen ()
+(defun layout-windows-centered-on-screen-4k ()
   (let* ((dimensions (screen-dimensions-macos))
 	 (width (car dimensions))
 	 (height (cdr dimensions))
@@ -85,12 +84,58 @@
     (set-frame-position frame-2 frame-2-x frame-2-y)
     (set-frame-position frame-3 frame-3-x frame-3-y)))
 
+;; center windows on screen
+(defun layout-windows-centered-on-screen-air ()
+  (set-frame-size frame-3 120 52)
+  (set-frame-size frame-2 74 26)
+  (set-frame-size frame-1 74 20)
+    
+  (let* ((dimensions (screen-dimensions-macos))
+	 (width (car dimensions))
+	 (height (cdr dimensions))
+	 (padding 8)
+
+	 (frames (frame-list))
+	 (frame-1 (car frames))
+	 (frame-2 (cadr frames))
+	 (frame-3 (caddr frames))
+	 
+	 (frame-1-w (frame-pixel-width frame-1))
+	 (frame-1-h (frame-pixel-height frame-1))
+
+	 (frame-2-w (frame-pixel-width frame-2))
+	 (frame-2-h (frame-pixel-height frame-2))
+
+	 (frame-3-w (frame-pixel-width frame-3))
+	 (frame-3-h (frame-pixel-height frame-3))
+	 
+	 (frame-3-x 0)
+	 (frame-3-y 0)
+
+	 (frame-2-x (+ frame-3-x frame-3-w padding))
+	 (frame-2-y frame-3-y)
+
+	 (frame-1-x (+ frame-3-x frame-3-w padding))
+	 (frame-1-y (- (+ frame-3-y frame-3-h padding)
+                       frame-1-h)))
+    (set-frame-position frame-1 frame-1-x frame-1-y)
+    (set-frame-position frame-2 frame-2-x frame-2-y)
+    (set-frame-position frame-3 frame-3-x frame-3-y)))
+
 ;; Run a given function-symbol (zero argument function) at a later time
 (defmacro* later (function-symbol &optional (time "1 sec"))
   `(run-at-time ,time nil ',function-symbol))
 
 ;;(run-at-time "1 sec" nil 'layout-windows-centered-on-screen)
-(later layout-windows-centered-on-screen)
+(defvar layout-windows-function
+  (let ((dimensions (screen-dimensions-macos))
+        (width (car dimensions))
+        (height (cdr dimensions)))
+    (if (= width 3860)
+        #'layout-windows-centered-on-screen-4k
+      #'layout-windows-centered-on-screen-air)))
+
+(funcall layout-windows-function)
 
 ;; smooth scrolling
 (setq mouse-wheel-scroll-amount '(1 ((shift) . 1))) ;; one line at a time
