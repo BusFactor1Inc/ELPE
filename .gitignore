@@ -214,7 +214,7 @@ lisp/international/uni-*.el
 *.dvi
 *.fn
 *.fns
-*.info
+# *.info
 *.ky
 *.kys
 *.op
