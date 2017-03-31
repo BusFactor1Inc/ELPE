@@ -312,7 +312,7 @@ Paredit behaves badly if parentheses are unbalanced, so exercise
                  "(frob ;|grovel\n (bloit\n  zargh))")
                 ("(frob grovel)          |"
                  "(frob grovel)          ;|"))
-   ("M-;"       paredit-comment-dwim
+   ("M-'"       paredit-comment-dwim
                 ("(foo |bar)   ; baz"
                  "(foo bar)                               ; |baz")
                 ("(frob grovel)|"
@@ -324,11 +324,11 @@ Paredit behaves badly if parentheses are unbalanced, so exercise
                 ("|(defun hello-world ...)"
                  ";;; |\n(defun hello-world ...)"))
 
-   ("C-j"       paredit-newline
-                ("(let ((n (frobbotz))) |(display (+ n 1)\nport))"
-                 ,(concat "(let ((n (frobbotz)))"
-                          "\n  |(display (+ n 1)"
-                          "\n           port))")))
+;;   ("C-J"       paredit-newline
+;;                ("(let ((n (frobbotz))) |(display (+ n 1)\nport))"
+;;                 ,(concat "(let ((n (frobbotz)))"
+;;                          "\n  |(display (+ n 1)"
+;;                          "\n           port))")))
 
    "Deleting & Killing"
    (("C-d" ,@paredit-forward-delete-keys)

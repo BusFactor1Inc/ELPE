@@ -63,7 +63,7 @@ string or function value that this variable has."
   :version "23.1"
   :group 'initialization)
 
-(defcustom inhibit-startup-screen nil
+(defcustom inhibit-startup-screen t
   "Non-nil inhibits the startup screen.
 
 This is for use in your personal init file (but NOT site-start.el),
@@ -74,7 +74,7 @@ once you are familiar with the contents of the startup screen."
 (defvaralias 'inhibit-splash-screen 'inhibit-startup-screen)
 (defvaralias 'inhibit-startup-message 'inhibit-startup-screen)
 
-(defvar startup-screen-inhibit-startup-screen nil)
+(defvar startup-screen-inhibit-startup-screen t)
 
 ;; The mechanism used to ensure that only end users can disable this
 ;; message is not complex.  Clearly, it is possible for a determined

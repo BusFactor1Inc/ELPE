@@ -112,7 +112,7 @@
 ;; function different from the usual minor mode function.
 ;; ---------------------------------------------------------------------------
 
-;; By the way: don't use desktop.el to customize Emacs -- the file .emacs
+;; By the way: don't use desktop.el to customize Emacs -- the file .elpe
 ;; in your home directory is used for that.  Saving global default values
 ;; for buffers is an example of misuse.
 
@@ -251,13 +251,13 @@ the normal hook `desktop-not-loaded-hook' is run."
                                 'desktop-base-file-name "22.1")
 
 (defcustom desktop-base-file-name
-  (convert-standard-filename ".emacs.desktop")
+  (convert-standard-filename ".elpe.desktop")
   "Name of file for Emacs desktop, excluding the directory part."
   :type 'file
   :group 'desktop)
 
 (defcustom desktop-base-lock-name
-  (convert-standard-filename ".emacs.desktop.lock")
+  (convert-standard-filename ".elpe.desktop.lock")
   "Name of lock file for Emacs desktop, excluding the directory part."
   :type 'file
   :group 'desktop
@@ -612,7 +612,7 @@ See also `desktop-minor-mode-table'.")
 (put 'desktop-minor-mode-handlers 'risky-local-variable t)
 
 ;; ----------------------------------------------------------------------------
-(defvar desktop-dirname nil
+(defvar desktop-dirname "~/.elpe.d/"
   "The directory in which the desktop file should be saved.")
 
 (defun desktop-full-file-name (&optional dirname)
@@ -1026,9 +1026,7 @@ will be accepted as the format version in which to save the file
 without further confirmation."
   (interactive (list
                 ;; Or should we just use (car desktop-path)?
-                (let ((default (if (member "." desktop-path)
-                                   default-directory
-                                 user-emacs-directory)))
+                (let ((default user-emacs-directory))
                   (read-directory-name "Directory to save desktop file in: "
                                        default default t))
                 nil
@@ -1207,7 +1205,7 @@ It returns t if a desktop file was loaded, nil otherwise."
                (and dirs (car dirs)))
              ;; If not found and `desktop-path' is non-nil, use its first element.
              (and desktop-path (car desktop-path))
-             ;; Default: .emacs.d.
+             ;; Default: .elpe.d.
              user-emacs-directory))))
     (if (file-exists-p (desktop-full-file-name))
 	;; Desktop file found, but is it already in use?
