@@ -2228,7 +2228,7 @@ char *
 x_get_string_resource (XrmDatabase rdb, const char *name, const char *class)
 {
   /* remove appname prefix; TODO: allow for !="Emacs" */
-  const char *appName = "Emacs Lisp Programming Environment (ELPE).";
+  const char *appName = "Emacs Lisp Programming Environment (ELPE)";
   const int appNameLen = strlen(appName);
   const char *res, *toCheck =
     class + (!strncmp (class, appName, appNameLen) ? appNameLen : 0);

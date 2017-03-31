@@ -649,7 +649,7 @@ along with GNU Emacs.  If not, see <http://www.gnu.org/licenses/>.
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>Emacs</string>
+	<string>Emacs Lisp Programming Environment (ELPE)</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<!-- This should be the emacs version number. -->
