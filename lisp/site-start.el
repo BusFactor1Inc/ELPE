@@ -145,13 +145,16 @@
   `(run-at-time ,time nil ,function-symbol))
 
 ;;(run-at-time "1 sec" nil 'layout-windows-centered-on-screen)
+(defvar on-macbook-air nil)
 (defvar layout-windows-function
   (let* ((dimensions (screen-dimensions-macos))
          (width (car dimensions))
          (height (cdr dimensions)))
     (if (= width 3840)
         #'layout-windows-centered-on-screen-4k
-      #'layout-windows-centered-on-screen-air)))
+      (progn
+        (setf on-macbook-air t)
+        #'layout-windows-centered-on-screen-air))))
 
 (later layout-windows-function)
 
@@ -183,7 +186,6 @@
 
 (defun site-start ()
   (interactive)
-  (other-window 1)
   (find-file "~/ELPE/lisp/site-start.el")
   (end-of-buffer))
 
@@ -215,7 +217,8 @@ request is ok with the given content type."
 (switch-to-buffer ".elpe")
 (other-frame 2)
 (other-window 1)
-(enlarge-window-horizontally 17)
+(when on-macbook-air
+  (enlarge-window-horizontally 17))
 (switch-to-buffer "*info*")
 (other-window 1)
 (split-window-vertically)
