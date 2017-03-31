@@ -15,9 +15,18 @@ cp -a nextstep/Emacs.app/ nextstep/"${appname}"/
 cp "ELPE.icns" "nextstep/${appname}/Contents/Resources/Emacs.icns"
 
 cp Info.plist nextstep/"${appname}"/Contents/Info.plist
-gsed -i "s|ELPE_IDENTIFIER|ca.busfactor1.emacs|" nextstep/"${appname}"/Contents/Info.plist
-gsed -i "s|ELPE_VERSION|$version|" nextstep/"${appname}"/Contents/Info.plist
-gsed -i "s|BUILD_NUMBER|$build_number|" nextstep/"${appname}"/Contents/Info.plist
+
+inplace_sed () {
+    expr="$1"
+    file="$2"
+
+    sed -e "$expr" "$file" > "$file",2 && mv "$file",2 "$file"
+}
+
+
+inplace_sed "s|ELPE_IDENTIFIER|ca.busfactor1.emacs|" "nextstep/${appname}/Contents/Info.plist"
+inplace_sed  "s|ELPE_VERSION|$version|" "nextstep/${appname}/Contents/Info.plist"
+inplace_sed "s|BUILD_NUMBER|$build_number|" "nextstep/${appname}/Contents/Info.plist"
 
 rm -f nextstep/"${appname}"/Contents/Resources/English.lproj/InfoPlist.strings
 
