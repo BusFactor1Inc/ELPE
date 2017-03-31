@@ -1,6 +1,8 @@
 (setq lexical-binding t)
 (require 'cl) ;; We're just like that
 
+(require 'paredit)
+
 (require 'grep-buffers)
 (require 'web-server)
 
