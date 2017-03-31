@@ -55,7 +55,7 @@ string or function value that this variable has."
   :type '(choice
 	  (const     :tag "Startup screen" nil)
 	  (directory :tag "Directory" :value "~/")
-	  (file      :tag "File" :value "~/.emacs")
+	  (file      :tag "File" :value "~/.elpe")
 	  ;; Note sure about hard-coding this as an option...
 	  (const     :tag "Remember Mode notes buffer" remember-notes)
 	  (function  :tag "Function")
@@ -350,11 +350,11 @@ Setting `init-file-user' does not prevent Emacs from loading
 
 (defcustom site-run-file (purecopy "site-start")
   "File containing site-wide run-time initializations.
-This file is loaded at run-time before `~/.emacs'.  It contains inits
+This file is loaded at run-time before `~/.elpe'.  It contains inits
 that need to be in place for the entire site, but which, due to their
 higher incidence of change, don't make sense to load into Emacs's
 dumped image.  Thus, the run-time load order is: 1. file described in
-this variable, if non-nil; 2. `~/.emacs'; 3. `default.el'.
+this variable, if non-nil; 2. `~/.elpe'; 3. `default.el'.
 
 Don't use the `site-start.el' file for things some users may not like.
 Put them in `default.el' instead, so that users can more easily
@@ -627,7 +627,7 @@ It is the default value of the variable `top-level'."
     (let ((old-face-font-rescale-alist face-font-rescale-alist))
       (unwind-protect
 	  (command-line)
-	;; Do this again, in case .emacs defined more abbreviations.
+	;; Do this again, in case .elpe defined more abbreviations.
 	(if default-directory
 	    (setq default-directory (abbreviate-file-name default-directory)))
 	;; Specify the file for recording all the auto save files of this session.
@@ -677,7 +677,7 @@ It is the default value of the variable `top-level'."
 		      old-face-font-rescale-alist)
 	    (set-face-attribute 'default nil :font (font-spec)))
 
-	  ;; Modify the initial frame based on what .emacs puts into
+	  ;; Modify the initial frame based on what .elpe puts into
 	  ;; ...-frame-alist.
 	  (if (fboundp 'frame-notice-user-settings)
 	      (frame-notice-user-settings))
@@ -942,7 +942,7 @@ please check its value")
     ;; Figure out which user's init file to load,
     ;; either from the environment or from the options.
     (setq init-file-user (if noninteractive nil (user-login-name)))
-    ;; If user has not done su, use current $HOME to find .emacs.
+    ;; If user has not done su, use current $HOME to find .elpe.
     (and init-file-user
          (equal init-file-user (user-real-login-name))
 	 (setq init-file-user ""))
@@ -1114,8 +1114,8 @@ please check its value")
 	(old-face-ignored-fonts face-ignored-fonts))
 
     ;; Run the site-start library if it exists.  The point of this file is
-    ;; that it is run before .emacs.  There is no point in doing this after
-    ;; .emacs; that is useless.
+    ;; that it is run before .elpe.  There is no point in doing this after
+    ;; .elpe; that is useless.
     ;; Note that user-init-file is nil at this point.  Code that might
     ;; be loaded from site-run-file and wants to test if -q was given
     ;; should check init-file-user instead, since that is already set.
@@ -1137,7 +1137,7 @@ please check its value")
 	(if (file-directory-p (expand-file-name
 			       ;; We don't support ~USER on MS-Windows
 			       ;; and MS-DOS except for the current
-			       ;; user, and always load .emacs from
+			       ;; user, and always load .elpe from
 			       ;; the current user's home directory
 			       ;; (see below).  So always check "~",
 			       ;; even if invoked with "-u USER", or
@@ -1171,33 +1171,33 @@ please check its value")
 			     ((eq system-type 'ms-dos)
 			      (concat "~" init-file-user "/_emacs"))
 			     ((not (eq system-type 'windows-nt))
-			      (concat "~" init-file-user "/.emacs"))
+			      (concat "~" init-file-user "/.elpe"))
 			     ;; Else deal with the Windows situation
-			     ((directory-files "~" nil "^\\.emacs\\(\\.elc?\\)?$")
-			      ;; Prefer .emacs on Windows.
-			      "~/.emacs")
+			     ((directory-files "~" nil "^\\.elpe\\(\\.elc?\\)?$")
+			      ;; Prefer .elpe on Windows.
+			      "~/.elpe")
 			     ((directory-files "~" nil "^_emacs\\(\\.elc?\\)?$")
 			      ;; Also support _emacs for compatibility, but warn about it.
 			      (push `(initialization
 				      ,(format-message
-					"`_emacs' init file is deprecated, please use `.emacs'"))
+					"`_emacs' init file is deprecated, please use `.elpe'"))
 				    delayed-warnings-list)
 			      "~/_emacs")
-			     (t ;; But default to .emacs if _emacs does not exist.
-			      "~/.emacs"))))
+			     (t ;; But default to .elpe if _emacs does not exist.
+			      "~/.elpe"))))
 		      ;; This tells `load' to store the file name found
 		      ;; into user-init-file.
 		      (setq user-init-file t)
 		      (load user-init-file-1 t t)
 
 		      (when (eq user-init-file t)
-			;; If we did not find ~/.emacs, try
-			;; ~/.emacs.d/init.el.
+			;; If we did not find ~/.elpe, try
+			;; ~/.elpe.d/init.el.
 			(let ((otherfile
 			       (expand-file-name
 				"init"
 				(file-name-as-directory
-				 (concat "~" init-file-user "/.emacs.d")))))
+				 (concat "~" init-file-user "/.elpe.d")))))
 			  (load otherfile t t)
 
 			  ;; If we did not find the user's init file,
@@ -1369,7 +1369,7 @@ the `--debug-init' option to view a complete error backtrace."
 
   ;; This is a problem because, e.g. if emacs.d/gnus.el exists,
   ;; trying to load gnus could load the wrong file.
-  ;; OK, it would not matter if .emacs.d were at the end of load-path.
+  ;; OK, it would not matter if .elpe.d were at the end of load-path.
   ;; but for the sake of simplicity, we discourage it full-stop.
   ;; Ref eg http://lists.gnu.org/archive/html/emacs-devel/2012-03/msg00056.html
   ;;
@@ -1385,7 +1385,7 @@ the `--debug-init' option to view a complete error backtrace."
 	   (display-warning 'initialization
 			    (format-message "\
 Your `load-path' seems to contain\n\
-your `.emacs.d' directory: %s\n\
+your `.elpe.d' directory: %s\n\
 This is likely to cause problems...\n\
 Consider using a subdirectory instead, e.g.: %s"
                                     dir (expand-file-name
@@ -2179,7 +2179,7 @@ Type \\[describe-distribution] for information on "))
 			     (if (equal init-file-user "")
 				 (user-login-name)
 			       init-file-user)))
-		 ;; Wasn't set with custom; see if .emacs has a setq.
+		 ;; Wasn't set with custom; see if .elpe has a setq.
                  (condition-case nil
                      (with-temp-buffer
                        (insert-file-contents user-init-file)
@@ -2419,7 +2419,7 @@ nil default-directory" name)
                      (kill-emacs t))
 
                     ;; This is for when they use --no-desktop with -q, or
-                    ;; don't load Desktop in their .emacs.  If desktop.el
+                    ;; don't load Desktop in their .elpe.  If desktop.el
                     ;; _is_ loaded, it will handle this switch, and we
                     ;; won't see it by the time we get here.
                     ((equal argi "-no-desktop")

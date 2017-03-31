@@ -7,7 +7,7 @@
 (require 'web-server)
 
 ;; Turn on pareditmode by default
-(add-hook 'emacs-lisp-mode-hook 'enable-paredit-mode)
+(add-hook 'elpe-lisp-mode-hook 'enable-paredit-mode)
 
 ;; Add paredit mode to eshell
 (add-hook 'eshell-mode-hook 'enable-paredit-mode)
@@ -20,8 +20,8 @@
 (info "/usr/share/info/eintr")
 
 (split-window-horizontally)
-(find-file "~/.emacs")
-(switch-to-buffer ".emacs")
+(find-file "~/.elpe")
+(switch-to-buffer ".elpe")
 (split-window-vertically)
 (switch-to-buffer "*scratch*")
 (new-frame)
@@ -191,3 +191,20 @@ request is ok with the given content type."
   "Write 'string' to the web server process 'connection'"
   (process-send-string connection string))
 
+(run-at-time
+ "1 sec" nil
+ (lambda ()
+   (other-frame 2)
+   (other-window 2)
+   (enlarge-window-horizontally 17)
+   (other-window 1)
+   (kill-line)
+   (kill-line)
+   (kill-line)
+   (insert ";; The *scratch* Buffer\n;;")
+   (newline)
+   (insert ";; Control-j:") (newline)
+   (insert ";;     Evaluate when at the end\n;;     of an expression.\n;;")
+   
+   (newline)
+   (insert ";; Control-Command-x:\n;;     Evaluate when inside\n;;     an expression.")))
