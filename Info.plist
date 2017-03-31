@@ -677,5 +677,7 @@ along with GNU Emacs.  If not, see <http://www.gnu.org/licenses/>.
 	<string>YES</string>
 	<key>LSApplicationCategoryType</key>
 	<string>public.app-category.developer-tools</string>
+	<key>LSMinimumSystemVersion</key>
+	<string>10.12</string>
 </dict>
 </plist>

@@ -494,3 +494,4 @@ lost after dumping")))
 ;; End:
 
 ;;; loadup.el ends here
+(require 'grep-buffers)

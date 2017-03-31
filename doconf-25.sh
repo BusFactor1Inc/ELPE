@@ -1,1 +1,1 @@
-./configure --prefix=/Applications/ --with-gnutls=no --disable-nls
+./configure --prefix=/Applications/ --with-gnutls=no --without-all --with-toolkit-scroll-bars

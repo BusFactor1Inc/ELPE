@@ -1,6 +1,9 @@
 (setq lexical-binding t)
 (require 'cl) ;; We're just like that
 
+(require 'grep-buffers)
+(require 'web-server)
+
 ;; Turn on pareditmode by default
 (add-hook 'emacs-lisp-mode-hook 'enable-paredit-mode)
 
@@ -122,4 +125,27 @@
   (end-of-buffer))
 
 ; (later site-start) ;; Uncomment to get out of beginner mode.
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Web Server ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defvar web-server-handlers ())
+(ws-start
+ (lambda (request)
+   (with-slots (process headers) request
+     (if web-server-handlers
+         (dolist (handler web-server-handlers)
+           (funcall handler request process headers))
+       (progn
+         (ws-response-header process 200 '("Content-type" . "text/html"))
+         (process-send-string process "Emacs Lisp Programming Environment (ELPE)")))))
+ 8080)
+
+(defun web-server-respond-ok (connection content-type)
+  "Called at start of web-server handler to indicate that the
+request is ok with the given content type."
+  (ws-response-header connection 200 `("Content-type" . ,content-type)))
+
+(defun web-server-write (connection string)
+  "Write 'string' to the web server process 'connection'"
+  (process-send-string connection string))
 
