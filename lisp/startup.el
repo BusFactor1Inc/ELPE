@@ -1767,9 +1767,9 @@ a face or button specification."
 		  (customize-set-variable 'inhibit-startup-screen t)
 		  (customize-mark-to-save 'inhibit-startup-screen)
 		  (custom-save-all))
-		(let ((w (get-buffer-window "*GNU Emacs*")))
+		(let ((w (get-buffer-window "*ELPE Startup*")))
 		  (and w (not (one-window-p)) (delete-window w)))
-		(kill-buffer "*GNU Emacs*")))
+		(kill-buffer "*ELPE Startup*")))
      "  ")
     (when (or user-init-file custom-file)
       (let ((checked (create-image "checked.xpm"
@@ -1804,7 +1804,7 @@ a face or button specification."
   "Display fancy startup screen.
 If CONCISE is non-nil, display a concise version of the
 splash screen in another window."
-  (let ((splash-buffer (get-buffer-create "*GNU Emacs*")))
+  (let ((splash-buffer (get-buffer-create "*ELPE Startup*")))
     (with-current-buffer splash-buffer
       (let ((inhibit-read-only t))
 	(erase-buffer)
@@ -1846,7 +1846,7 @@ splash screen in another window."
   (let ((frame (fancy-splash-frame)))
     (save-selected-window
       (select-frame frame)
-      (switch-to-buffer "*About GNU Emacs*")
+      (switch-to-buffer "*About ELPE*")
       (setq buffer-undo-list t)
       (let ((inhibit-read-only t))
 	(erase-buffer)
@@ -1907,7 +1907,7 @@ If optional argument STARTUP is non-nil, display the startup screen
 after Emacs starts.  If STARTUP is nil, display the About screen.
 If CONCISE is non-nil, display a concise version of the
 splash screen in another window."
-  (let ((splash-buffer (get-buffer-create "*About GNU Emacs*")))
+  (let ((splash-buffer (get-buffer-create "*About The Emacs Lisp Programming Environment*")))
     (with-current-buffer splash-buffer
       (setq buffer-read-only nil)
       (erase-buffer)
@@ -1920,11 +1920,11 @@ splash screen in another window."
       ;; The convention for this piece of code is that
       ;; each piece of output starts with one or two newlines
       ;; and does not end with any newlines.
-      (insert (if startup "Welcome to GNU Emacs" "This is GNU Emacs"))
+      (insert (if startup "Welcome to The Emacs Lisp Programming Environment (ELPE)" "This is the Emacs Lisp Programming Environment (ELPE)"))
       (insert
        (if (eq system-type 'gnu/linux)
-	   ", one component of the GNU/Linux operating system.\n"
-	 ", a part of the GNU operating system.\n"))
+	   ", by BusFactor1 Inc.\n"
+	 ", by BusFactor1 Inc.\n"))
 
       (if startup
 	  (if (display-mouse-p)
@@ -1966,7 +1966,7 @@ splash screen in another window."
       (setq buffer-read-only t)
       (if (and view-read-only (not view-mode))
 	  (view-mode-enter nil 'kill-buffer))
-      (if startup (rename-buffer "*GNU Emacs*" t))
+      (if startup (rename-buffer "*ELPP Startup*" t))
       (goto-char (point-min)))
     (if concise
 	(display-buffer splash-buffer)
@@ -1975,9 +1975,7 @@ splash screen in another window."
 (defun normal-mouse-startup-screen ()
   ;; The user can use the mouse to activate menus
   ;; so give help in terms of menu items.
-  (insert "\
-To follow a link, click Mouse-1 on it, or move to it and type RET.
-To quit a partially entered command, type Control-g.\n")
+  (insert "If you ever get stuck, hit Control-g a few times.\n")
 
   (insert "\nImportant Help menu items:\n")
   (insert-button "Emacs Tutorial"
@@ -2204,13 +2202,13 @@ A fancy display is used on graphic displays, normal otherwise.
 If CONCISE is non-nil, display a concise version of the startup
 screen."
   ;; Prevent recursive calls from server-process-filter.
-  (if (not (get-buffer "*GNU Emacs*"))
+  (if (not (get-buffer "*ELPE Startup*"))
       (if (use-fancy-splash-screens-p)
       	  (fancy-startup-screen concise)
       	(normal-splash-screen t concise))))
 
 (defun display-about-screen ()
-  "Display the *About GNU Emacs* buffer.
+  "Display the *About ELPE* buffer.
 A fancy display is used on graphic displays, normal otherwise."
   (interactive)
   (if (use-fancy-splash-screens-p)

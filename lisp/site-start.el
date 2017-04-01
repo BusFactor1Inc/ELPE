@@ -19,7 +19,7 @@
 (setq eshell-banner-message "Emacs Lisp Programming Environment (ELPE) shell.\n\nYou can evaluate Emacs Lisp code at the prompt\nand run shell commands like ls, cp, mv and cat.\n\n")
 
 (global-set-key "\M-;" 'other-window)
-(global-set-key "\C-xo" 'other-frame)
+(global-set-key "\C-xo" (lambda () (interactive) (other-frame -1)))
 ;(global-set-key "\M-'" 'lisp-complete-symbol)
 
 (set-frame-size (selected-frame) 160 78)
@@ -49,7 +49,6 @@
 (eshell)
 (other-window 1)
 (split-window-vertically)
-
 (switch-to-buffer "*info*")
 (set-frame-size (selected-frame) 80 37)
 
@@ -110,7 +109,7 @@
          (frame-2 (cadr frames))
          (frame-3 (caddr frames)))
     (set-frame-size frame-3 120 52)
-    (set-frame-size frame-2 74 26)
+    (set-frame-size frame-2 74 27)
     (set-frame-size frame-1 74 20)
     
     (let* ((dimensions (screen-dimensions-macos))
@@ -135,7 +134,8 @@
            
            (frame-1-x (+ frame-3-x frame-3-w padding))
            (frame-1-y (- (+ frame-3-y frame-3-h padding)
-                         frame-1-h)))
+                         frame-1-h
+                         -16)))
       (set-frame-position frame-1 frame-1-x frame-1-y)
       (set-frame-position frame-2 frame-2-x frame-2-y)
       (set-frame-position frame-3 frame-3-x frame-3-y))))
@@ -218,10 +218,33 @@ request is ok with the given content type."
 (other-frame 2)
 (other-window 1)
 (when on-macbook-air
-  (enlarge-window-horizontally 17))
+  (enlarge-window-horizontally 15))
 (switch-to-buffer "*info*")
 (other-window 1)
-(split-window-vertically)
+;(split-window-vertically)
 (switch-to-buffer "*scratch*")
 (other-window 1)
 (enlarge-window -6)
+
+(load-theme 'leuven)
+
+(other-frame 1)
+(switch-to-buffer "*eshell*")
+(other-frame 1)
+(switch-to-buffer ".elpe")
+(end-of-buffer)
+(calc)
+(other-frame 1)
+(other-window 1)
+(split-window-vertically)
+(enlarge-window 10)
+(switch-to-buffer "*info*")
+(other-frame 2)
+(other-window 2)
+(other-frame 1)
+
+(switch-to-buffer "*scratch*")
+(other-window 1)
+(switch-to-buffer "*ELPE Help*")
+(insert "Start by reading the manual.\n")
+(enlarge-window-horizontally 3)
