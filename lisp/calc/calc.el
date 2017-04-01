@@ -1412,7 +1412,7 @@ commands given here will actually operate on the *Calculator* stack."
   (make-local-variable 'overlay-arrow-string)
   (when (= (buffer-size) 0)
     (let ((buffer-read-only nil))
-      (insert (propertize "Emacs Calculator Trail\n" 'face 'italic)))))
+      (insert (propertize "Calculator Trail\n" 'face 'italic)))))
 
 (defun calc-create-buffer ()
   "Create and initialize a buffer for the Calculator."
@@ -2001,7 +2001,7 @@ See calc-keypad for details."
 	 (setq calc-any-selections nil)
 	 (erase-buffer)
 	 (when calc-show-banner
-	   (insert (propertize "--- Emacs Calculator Mode ---\n"
+	   (insert (propertize "--- Stack Calculator ---\n"
 			       'face 'italic)))
 	 (while thing
 	   (goto-char (point-min))
