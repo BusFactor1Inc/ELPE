@@ -34,3 +34,6 @@ xattr -cr nextstep/"${appname}"
 
 rm -f nextstep/"${appname}"/Contents/MacOS/bin/*
 rm -f nextstep/"${appname}"/Contents/MacOS/libexec/*
+
+cp urbit-0.4.3/bin/urbit nextstep/"${appname}"/Contents/MacOS
+cp urbit-0.4.3/urbit.pill nextstep/"${appname}"/Contents/MacOS
