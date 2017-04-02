@@ -1,1 +1,1 @@
-./configure --prefix=/Applications/ --with-gnutls=no --without-all --with-toolkit-scroll-bars --without-makeinfo
+./configure --prefix=/Applications/ --with-gnutls=no --without-all --with-toolkit-scroll-bars --without-makeinfo --with-xml2

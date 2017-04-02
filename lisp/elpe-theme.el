@@ -55,7 +55,7 @@ Semantic, and Ansi-Color faces are included -- and much more...")
       (diff-none '(:foreground "gray33"))
       (diff-removed '(:foreground "#A60000" :background "#FFDDDD"))
       (directory '(:weight bold :foreground "blue" :background "#FFFFD2"))
-      (highlight-line '(:background "#FFFF47")) ; #F5F5F5
+      (highlight-line '(:background "#FFFFD7")) ; #F5F5F5
       (highlight-line-gnus '(:background "#DAEAFC")) ; defined in `gnus-leuven.el'
       (link '(:weight normal :underline t :foreground "#006DAF"))
       (mail-header-name '(:family "Sans Serif" :weight normal :foreground "#A3A3A2"))
@@ -66,8 +66,8 @@ Semantic, and Ansi-Color faces are included -- and much more...")
       (mail-unread '(:weight bold :foreground "black"))
       (marked-line '(:weight bold :foreground "white" :background "red"))
       (match '(:weight bold :background "#FBE448")) ; occur patterns
-      (ol1 '(:height 3.0 :weight bold :overline "#A7A7A7" :foreground "#3C3C3C" :background "#F0F0F0"))
-      (ol2 '(:height 2.0 :weight bold :overline "#123555" :foreground "#123555" :background "#E5F4FB"))
+      (ol1 '(:height 1.3 :weight bold :overline "#A7A7A7" :foreground "#3C3C3C" :background "#F0F0F0"))
+      (ol2 '(:height 1.0 :weight bold :overline "#123555" :foreground "#123555" :background "#E5F4FB"))
       (ol3 '(:height 1.0 :weight bold :foreground "#005522" :background "#EFFFEF"))
       (ol4 '(:height 1.0 :weight bold :slant normal :foreground "#EA6300"))
       (ol5 '(:height 1.0 :weight bold :slant normal :foreground "#E3258D"))
@@ -86,7 +86,7 @@ Semantic, and Ansi-Color faces are included -- and much more...")
 
   (custom-theme-set-faces
    'leuven
-   `(default ((,class (:foreground "#333333" :background "#FFFFFF"))))
+   `(default ((,class (:foreground "#333333" :background "#fffdf8"))))
    `(bold ((,class (:weight bold :foreground "black"))))
    `(bold-italic ((,class (:weight bold :slant italic :foreground "black"))))
    `(italic ((,class (:slant italic :foreground "#1A1A1A"))))
@@ -109,9 +109,9 @@ Semantic, and Ansi-Color faces are included -- and much more...")
    `(whitespace-trailing ((,class (:foreground "#B3B3B3" :background "#FFFF57"))))
 
    ;; Mode line faces
-   `(mode-line ((,class (:box (:line-width 1 :color "#1A2F54") :foreground "#85CE0B" :background "#335EA8"))))
+   `(mode-line ((,class (:box (:line-width 1 :color "#1A2F54") :foreground "yellow" :background "#335EA8"))))
    `(mode-line-inactive ((,class (:box (:line-width 1 :color "#4E4E4C") :foreground "#F0F0EF" :background "#9B9C97"))))
-   `(mode-line-buffer-id ((,class (:weight bold :foreground "white"))))
+   `(mode-line-buffer-id ((,class (:weight bold :foreground "#efede8"))))
    `(mode-line-emphasis ((,class (:weight bold :foreground "white"))))
    `(mode-line-highlight ((,class (:foreground "yellow"))))
 
@@ -127,7 +127,7 @@ Semantic, and Ansi-Color faces are included -- and much more...")
    ;; Font lock faces
    `(font-lock-builtin-face ((,class (:foreground "#006FE0"))))
    `(font-lock-comment-delimiter-face ((,class (:foreground "#8D8D84")))) ; #696969
-   `(font-lock-comment-face ((,class (:slant italic :foreground "#8D8D84")))) ; #696969
+   `(font-lock-comment-face ((,class (:slant italic :foreground "red")))) ; #696969
    `(font-lock-constant-face ((,class (:foreground "#D0372D"))))
    `(font-lock-doc-face ((,class (:foreground "#036A07"))))
    ;; `(font-lock-doc-string-face ((,class (:foreground "#008000")))) ; XEmacs only, but is used for HTML exports from org2html (and not interactively)
@@ -450,8 +450,8 @@ Semantic, and Ansi-Color faces are included -- and much more...")
    `(ilog-load-face ((,class (:foreground "#BA36A5"))))
    `(ilog-message-face ((,class (:foreground "#808080"))))
    `(info-file ((,class (:family "Sans Serif" :height 1.8 :weight bold :box (:line-width 1 :color "#0000CC") :foreground "cornflower blue" :background "LightSteelBlue1"))))
-   `(info-header-node ((,class (:underline t :foreground "Cornflower Blue")))) ; nodes in header
-   `(info-header-xref ((,class (:underline t :foreground "blue")))) ; cross references in header
+   `(info-header-node ((,class (:underline t :foreground "orange")))) ; nodes in header
+   `(info-header-xref ((,class (:underline t :foreground "dodger blue")))) ; cross references in header
    `(info-menu-header ((,class ,ol2))) ; menu titles (headers) -- major topics
    `(info-menu-star ((,class (:foreground "black")))) ; every 3rd menu item
    `(info-node ((,class (:underline t :foreground "blue")))) ; node names

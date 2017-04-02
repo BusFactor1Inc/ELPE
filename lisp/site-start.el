@@ -1,3 +1,5 @@
+;; site-start.el -*- mode: emacs lisp -*-
+
 (setq lexical-binding t)
 (require 'cl) ;; We're just like that
 
@@ -13,6 +15,8 @@
 (require 'paredit)
 (add-hook 'emacs-lisp-mode-hook 'enable-paredit-mode)
 
+(package-initialize)
+
 ;; Add paredit mode to eshell
 (add-hook 'eshell-mode-hook 'enable-paredit-mode)
 (add-hook 'minibuffer-setup-hook 'enable-paredit-mode)
@@ -24,7 +28,7 @@
 
 (set-frame-size (selected-frame) 160 78)
 
-(info "/usr/share/info/eintr")
+;(info "/Applications/Emacs Lisp Programming Environment (ELPE).app/Contents/Resources/info/eintr")
 
 (split-window-horizontally)
 (find-file "~/.elpe")
@@ -48,8 +52,9 @@
 (new-frame)
 (eshell)
 (other-window 1)
+
 (split-window-vertically)
-(switch-to-buffer "*info*")
+
 (set-frame-size (selected-frame) 80 37)
 
 (eldoc-mode t)
@@ -219,7 +224,15 @@ request is ok with the given content type."
 (other-window 1)
 (when on-macbook-air
   (enlarge-window-horizontally 15))
-(switch-to-buffer "*info*")
+
+(setf *expert-mode* (y-or-n-p "Expert mode?"))
+
+(let ((site-start "~/ELPE/lisp/site-start.el"))
+  (if (and *expert-mode*
+           (file-exists-p site-start))
+      (find-file site-start)
+    (eww-open-file "/Applications/Emacs Lisp Programming Environment (ELPE).app/Contents/Resources/eintr.html")))
+
 (other-window 1)
 ;(split-window-vertically)
 (switch-to-buffer "*scratch*")
@@ -295,6 +308,7 @@ if any returns nil.  If `confirm-kill-emacs' is non-nil, calls it."
      ;; Query the user for other things, perhaps.
      (run-hook-with-args-until-failure 'kill-emacs-query-functions)
      (or (null confirm)
-         (funcall confirm "Really exit Emacs? "))
+         (funcall confirm "Really exit The Emacs Lisp Programming Environment? "))
      (kill-emacs))))
 
+(global-hl-line-mode)

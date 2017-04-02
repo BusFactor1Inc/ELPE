@@ -77,6 +77,7 @@
 			    (expand-file-name "language" dir)
 			    (expand-file-name "international" dir)
 			    (expand-file-name "textmodes" dir)
+			    (expand-file-name "w3" dir)
 			    (expand-file-name "vc" dir)))))
 
 (if (eq t purify-flag)

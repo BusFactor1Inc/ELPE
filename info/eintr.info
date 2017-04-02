@@ -9,39 +9,17 @@ END-INFO-DIR-ENTRY
    This is an `Introduction to Programming in Emacs Lisp', for people
 who are not programmers.
 
-   Distributed with Emacs version 26.0.50.
-
-   Copyright (C) 1990-1995, 1997, 2001-2017 Free Software Foundation,
-Inc.
-
-   Printed copies available from `http://shop.fsf.org/'. Published by:
-
-     GNU Press,                        http://www.fsf.org/licensing/gnu-press/
-     a division of the                 email: sales@fsf.org
-     Free Software Foundation, Inc.    Tel: +1 (617) 542-5942
-     51 Franklin Street, Fifth Floor   Fax: +1 (617) 542-2652
-     Boston, MA 02110-1301 USA
-
-
-   ISBN 1-882114-43-4
-
-     Permission is granted to copy, distribute and/or modify this
-     document under the terms of the GNU Free Documentation License,
-     Version 1.3 or any later version published by the Free Software
-     Foundation; there being no Invariant Section, with the Front-Cover
-     Texts being "A GNU Manual", and with the Back-Cover Texts as in
-     (a) below.  A copy of the license is included in the section
-     entitled "GNU Free Documentation License".
-
-     (a) The FSF's Back-Cover Text is: "You have the freedom to copy
-     and modify this GNU manual.  Buying copies from the FSF supports
-     it in developing GNU and promoting software freedom."
-
 
 File: eintr.info,  Node: Top,  Next: Preface,  Up: (dir)
 
-An Introduction to Programming in Emacs Lisp
-********************************************
+An Introduction
+***************
+
+to Programming
+**************
+
+in Emacs Lisp
+***************
 
 This is an `Introduction to Programming in Emacs Lisp', for people who
 are not programmers.
@@ -17833,3 +17811,32 @@ Node: Index701440
 Node: About the Author736244
 
 End Tag Table
+
+   Distributed with Emacs version 26.0.50.
+
+   Copyright (C) 1990-1995, 1997, 2001-2017 Free Software Foundation,
+Inc.
+
+   Printed copies available from `http://shop.fsf.org/'. Published by:
+
+     GNU Press,                        http://www.fsf.org/licensing/gnu-press/
+     a division of the                 email: sales@fsf.org
+     Free Software Foundation, Inc.    Tel: +1 (617) 542-5942
+     51 Franklin Street, Fifth Floor   Fax: +1 (617) 542-2652
+     Boston, MA 02110-1301 USA
+
+
+   ISBN 1-882114-43-4
+
+     Permission is granted to copy, distribute and/or modify this
+     document under the terms of the GNU Free Documentation License,
+     Version 1.3 or any later version published by the Free Software
+     Foundation; there being no Invariant Section, with the Front-Cover
+     Texts being "A GNU Manual", and with the Back-Cover Texts as in
+     (a) below.  A copy of the license is included in the section
+     entitled "GNU Free Documentation License".
+
+     (a) The FSF's Back-Cover Text is: "You have the freedom to copy
+     and modify this GNU manual.  Buying copies from the FSF supports
+     it in developing GNU and promoting software freedom."
+

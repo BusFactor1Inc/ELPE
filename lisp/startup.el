@@ -1966,7 +1966,7 @@ splash screen in another window."
       (setq buffer-read-only t)
       (if (and view-read-only (not view-mode))
 	  (view-mode-enter nil 'kill-buffer))
-      (if startup (rename-buffer "*ELPP Startup*" t))
+      (if startup (rename-buffer "*ELPE Startup*" t))
       (goto-char (point-min)))
     (if concise
 	(display-buffer splash-buffer)
